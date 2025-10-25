@@ -1,0 +1,60 @@
+{
+  "name": "shahdily",
+  "version": "1.0.0",
+  "description": "Custom Video Streaming Application",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "author": {
+    "name": "Shahdily",
+    "email": "contact@shahdily.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && npm run electron\"",
+    "dist": "npm run build && electron-builder --publish never",
+    "dist:win": "npm run build && electron-builder --win --publish never"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0",
+    "electron-squirrel-startup": "^1.1.0",
+    "electron-updater": "^6.1.0"
+  },
+  "devDependencies": {
+    "react-scripts": "5.0.1",
+    "electron": "^latest",
+    "electron-builder": "^24.4.0"
+  },
+  "build": {
+    "appId": "com.shahdily.desktop",
+    "productName": "Shahdily",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/electron.js",
+      "preload.js",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Shahdily"
+    }
+  }
+}
